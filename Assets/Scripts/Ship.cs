@@ -8,7 +8,11 @@ public class Ship : MonoBehaviour
     public float rotationVelocity=45;
     public float acceleration;
     public GameObject shotReference;
+    public int Life;
 
+    private void Awake()
+    {
+    }
     void Rotate(float direction)
     {
         rigibody.AddTorque(transform.up * rotationVelocity * Time.deltaTime * direction);
@@ -17,8 +21,7 @@ public class Ship : MonoBehaviour
 
     void Shot()
     {
-        GameObject newShot = Instantiate(shotReference);
-        newShot.transform.position = transform.position + transform.forward*2;
+        GameObject newShot = Instantiate(shotReference, transform.position, transform.localRotation);
     }
 
     void Accelerate()

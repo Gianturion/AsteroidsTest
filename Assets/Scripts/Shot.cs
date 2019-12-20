@@ -8,9 +8,29 @@ public class Shot : MonoBehaviour
     public Vector3 direction = Vector3.forward;
 
 
+    private void Start()
+    {
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Limit")
+        {
+            Die();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Limit")
+        {
+            Die();
+        }
+    }
+
     void Move()
     {
-        transform.Translate(direction * velocity * Time.deltaTime, Space.World);
+        transform.Translate(direction * velocity * Time.deltaTime);
     }
 
     void SplitAsteroid()
@@ -25,13 +45,7 @@ public class Shot : MonoBehaviour
 
     void Die()
     {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+        Destroy(this.gameObject);
     }
 
     // Update is called once per frame
