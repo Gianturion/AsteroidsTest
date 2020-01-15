@@ -9,22 +9,23 @@ public class Ship : MonoBehaviour
     public float acceleration;
     public GameObject shotReference;
     public int Life;
+   
 
     private void Awake()
     {
     }
-    void Rotate(float direction)
+    void Rotate(float direction)                                       //Ship rotation
     {
         rigibody.AddTorque(transform.up * rotationVelocity * Time.deltaTime * direction);
         //transform.Rotate(Vector3.up * rotationVelocity * Time.deltaTime * direction);
     }
 
-    void Shot()
+    void Shot()                                                        //projectiles
     {
         GameObject newShot = Instantiate(shotReference, transform.position, transform.localRotation);
     }
 
-    void Accelerate()
+    void Accelerate()                                                  //RigidBody movement speed
     {
         rigibody.AddForce(transform.forward * acceleration * Time.deltaTime);
         //transform.Translate(Vector3.forward * acceleration * Time.deltaTime);
@@ -37,7 +38,33 @@ public class Ship : MonoBehaviour
 
     void CrossScreen()
     {
+        Camera cam = FindObjectOfType<Camera>();
+        Vector3 screenPoint = cam.WorldToViewportPoint(transform.position);
 
+        if (screenPoint.x > 1)
+        {
+            transform.position = cam.ViewportToWorldPoint(new Vector3(0, screenPoint.y, screenPoint.z));
+        }
+        else if (screenPoint.x < 0)
+        {
+            transform.position = cam.ViewportToWorldPoint(new Vector3(1, screenPoint.y, screenPoint.z));
+        }
+        else if (screenPoint.y > 1)
+        {
+            transform.position = cam.ViewportToWorldPoint(new Vector3(screenPoint.x, 0, screenPoint.z));
+        }
+        else if (screenPoint.y < 0)
+        {
+            transform.position = cam.ViewportToWorldPoint(new Vector3(screenPoint.x, 1, screenPoint.z));
+        }
+    }
+
+    private void onTriggerEnter(Collider collider)                      //Ship + Asteroid collision
+    {
+        if (collider.gameObject.tag == "Asteroid")
+        {
+            
+        }
     }
 
 
@@ -48,7 +75,7 @@ public class Ship : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update()                                                       //Ship keybindings
     {
         if (Input.GetKey(KeyCode.A)) Rotate(-1);
         if (Input.GetKey(KeyCode.D)) Rotate(1);
