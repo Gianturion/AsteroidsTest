@@ -1,0 +1,26 @@
+Asteroids
+
+Asteroids is a shooter arcade game, you control a ship in an asteroid field and your objective is to shoot and destroy all the asteroids while
+avoiding collision.
+
+Ship Key Points:
+- Rotate: you are able to rotate your ship to the left or to the right;
+- Accelerate: you can press the forward button to thrust forward. Keep in mind the ship will keep moving even when not accelerating;
+- Shoot: by pressing the shoot button, you are able to shoot and destroy the asteroids;
+- Die: when colliding with the asteroids, the ship will automatically get destroyed;
+- Cross Screen: when traversing the boundaries, the ship will appear on the other side of the arena.
+
+Asteroid Key Points:
+- Move: the asteroid will move indefinitely until destroyed;
+- Split: when shot once, the asteroid will split into smaller asteroids;
+- Die: when a smaller asteroid is shot, it will be destroyed permanently;
+- Destroy Ship: when colliding with the ship, the asteroid will destroy it and one life will be over;
+- Cross Screen: just like the ship, the asteroid will appear on the other side of the arena when traversing the boundaries.
+
+
+Shot Key Points:
+- Move: the shot will move indefinitely until it goes out of bounds;
+- Split Asteroid: when colliding with an asteroid, the shot will split it into smaller asteroids;
+- Destroy Smaller Asteroid: when colliding with a smaller asteroid, the shot will destroy it permanently;
+- Die: when colliding or going out of bounds, the shot will be automatically destroyed.
+
